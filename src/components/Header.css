@@ -1,0 +1,14 @@
+.header {
+  height: 200px;
+  background-color: hsl(180, 29%, 50%);
+  background-image: url('../images/bg-header-mobile.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .header {
+    background-image: url('../images/bg-header-desktop.svg');
+  }
+}

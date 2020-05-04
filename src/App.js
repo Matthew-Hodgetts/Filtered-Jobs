@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { getListings } from './data';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from './components/Header';
+import Listing from './components/Listing';
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      listings: getListings(),
+      filters: [],
+    };
+  }
+
+  render() {
+    return (
+      <div className='App'>
+        <Header />
+        <main>
+          {this.state.filters.length > 0
+            ? this.filteredResults()
+            : this.state.listings.map((listing) => (
+                <Listing key={listing.id} listing={listing} />
+              ))}
+        </main>
+      </div>
+    );
+  }
 }
 
 export default App;
